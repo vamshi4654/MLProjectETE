@@ -7,6 +7,8 @@ import pandas as pd
 
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
+from src.components.Data_transformation import DataTransformation
+from src.components.Data_transformation import DataTransformationConfig
 ## when we use this data class no need to use init in the class while defining variables
 ## but when we have functions in the class using init is only preferable
 
@@ -47,7 +49,12 @@ class DataIngestion:
 
 if __name__=="__main__":
     obj=DataIngestion()
-    obj.initiate_data_ingestion()
+    train_data,test_data = obj.initiate_data_ingestion()
+    '''
+    Here we are returning the paths of train and test data and capturing in the respective variables
+    '''
+    data_transformer = DataTransformation()
+    train_arr,test_arr,_ = data_transformer.initiate_data_transformation(train_data,test_data)
 
 
 ##
